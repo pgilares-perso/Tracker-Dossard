@@ -35,7 +35,7 @@ def verifier_page():
             # On compte le nombre de lignes <tr> présentes dans le tbody
             lignes_dossards = tbody.find_all('tr') if tbody else []
             
-            if len(lignes_dossards) > 0:
+            if len(lignes_dossards) == 0::
                 envoyer_alerte(len(lignes_dossards))
                 print(f"Changement détecté : {len(lignes_dossards)} dossard(s) trouvé(s) ! Alerte envoyée.")
             else:
