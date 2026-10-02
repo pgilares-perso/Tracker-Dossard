@@ -1,0 +1,28 @@
+name: Tracker Dossard
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # Lance le script toutes les 15 minutes
+  workflow_dispatch: # Permet de lancer le script manuellement pour tester
+
+jobs:
+  check-website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Installer les dépendances
+        run: pip install requests beautifulsoup4
+
+      - name: Lancer le script de vérification
+        env:
+          URL_COURSE: ${{ secrets.URL_COURSE }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scraper.py
