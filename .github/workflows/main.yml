@@ -2,7 +2,7 @@ name: Tracker Dossard
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Lance le script toutes les 5 minutes
+    - cron: '*/10 * * * *' # Lance le script toutes les 10 minutes
   workflow_dispatch: # Permet de lancer le script manuellement pour tester
 
 jobs:
